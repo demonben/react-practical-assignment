@@ -1,11 +1,7 @@
 import React, { useState } from "react";
-import { FaRegCommentDots } from "react-icons/fa";
-import {
-  AiOutlineLike,
-  AiOutlineDislike,
-  AiOutlineCloseCircle,
-} from "react-icons/ai";
-import Modal from "react-modal";
+
+import CommentsModal from "./CommentsModal";
+import PostsIcons from "./PostsIcons";
 
 const PostItem = ({ post }) => {
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -37,25 +33,11 @@ const PostItem = ({ post }) => {
           <span className="line-title">Timestamp:</span>
           <span>{post.date}</span>
         </div>
-        <Modal
-          isOpen={modalIsOpen}
-          onRequestClose={closeCommentsModal}
-          contentLabel="test"
-          ariaHideApp={false}
-        >
-          <AiOutlineCloseCircle onClick={closeCommentsModal} />
-        </Modal>
-        <div className="post-icons-section">
-          <button className="icon-button" onClick={openCommentsModal}>
-            <FaRegCommentDots className="post-icon" />
-          </button>
-          <button className="icon-button">
-            <AiOutlineLike className="post-icon" />
-          </button>
-          <button className="icon-button">
-            <AiOutlineDislike className="post-icon" />
-          </button>
-        </div>
+        <CommentsModal
+          modalIsOpen={modalIsOpen}
+          closeCommentsModal={closeCommentsModal}
+        />
+        <PostsIcons openCommentsModal={openCommentsModal} />
       </div>
     </div>
   );
