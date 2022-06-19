@@ -10,3 +10,14 @@ export const getPostsByPage = async (pageNumber) => {
     console.log(error.response);
   }
 };
+export const searchPosts = async (text) => {
+  try {
+    const response = await axios.get(
+      `http://localhost:8080/post/search/${text}`
+    );
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.log(error.response);
+  }
+};
