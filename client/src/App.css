@@ -1,0 +1,41 @@
+/* posts list */
+
+.posts-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 40px calc((100% - (255px * 3)) / 3);
+}
+
+/* post item */
+
+.post-item {
+  height: 100px;
+  flex: 0 0 215px;
+  margin: 1em 20px;
+  border: 2px blue solid;
+}
+.post-icon {
+  margin: 5px;
+}
+.icon-button {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+.line-title {
+  margin-right: 5px;
+  font-weight: bold;
+}
+.post-card {
+  display: flex;
+  flex-direction: row;
+}
+.post-icons-section {
+  display: flex;
+  flex-direction: row;
+}
