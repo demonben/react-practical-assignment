@@ -39,3 +39,22 @@
   display: flex;
   flex-direction: row;
 }
+/* buttons */
+.button {
+  background-color: aliceblue;
+  color: #f2668b;
+  border: 2px solid #f2668b;
+  cursor: pointer;
+  padding: 12px 12px 12px 12px;
+  border-radius: 10%;
+  font-size: 20px;
+  margin: 5px;
+}
+.button:hover {
+  background-color: #f2668b;
+  color: aliceblue;
+}
+.buttons-section {
+  text-align: center;
+  margin: 10px;
+}

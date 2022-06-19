@@ -6,6 +6,7 @@ import {
   AiOutlineCloseCircle,
 } from "react-icons/ai";
 import Modal from "react-modal";
+
 const PostItem = ({ post }) => {
   const [modalIsOpen, setIsOpen] = useState(false);
   let votes = post.likes - post.dislikes;
