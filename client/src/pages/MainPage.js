@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { changePosts } from "../redux/postsSlice";
 import SearchBar from "../components/SearchBar";
 import NavBar from "../components/Navbar";
+import NewPostForm from "../components/NewPostForm";
 
 const MainPage = ({ user, logout }) => {
   // const [posts, setPosts] = useState([]);
@@ -21,14 +22,13 @@ const MainPage = ({ user, logout }) => {
   return (
     <div>
       <NavBar user={user} logout={logout} />{" "}
-      <SearchBar 
-      setPageNumber={setPageNumber}
-       pageNumber={pageNumber} />
+      <SearchBar setPageNumber={setPageNumber} pageNumber={pageNumber} />
       <PostsList
         totalPages={totalPages}
         pageNumber={pageNumber}
         setPageNumber={setPageNumber}
       />
+      <NewPostForm />
     </div>
   );
 };

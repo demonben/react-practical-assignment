@@ -21,3 +21,12 @@ export const searchPosts = async (text) => {
     console.log(error.response);
   }
 };
+export const addPosts = async (post) => {
+  try {
+    const response = await axios.post(`http://localhost:8080/post`, post);
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.log(error.response);
+  }
+};
