@@ -14,8 +14,11 @@ function App() {
   useEffect(() => {
     if (localStorage.getItem("user")) {
       setIsLogin(true);
+      setValue({ ...value, user: localStorage.getItem("user") });
+    } else {
+      setIsLogin(false);
     }
-  }, []);
+  }, [isLogin]);
 
   const handleChange = (e) => {
     setValue({ ...value, [e.target.name]: e.target.value });
@@ -32,7 +35,6 @@ function App() {
   const logout = () => {
     setValue(initialState);
     localStorage.setItem("user", initialState.user);
-
   };
 
   return (

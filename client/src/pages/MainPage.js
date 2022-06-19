@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import PostsList from "../components/PostList";
 import { getPostsByPage } from "../lib/api";
+import NavBar from "../components/Navbar";
 
 const MainPage = ({ user, logout }) => {
   const [posts, setPosts] = useState([]);
@@ -12,7 +13,7 @@ const MainPage = ({ user, logout }) => {
   }, [pageNumber]);
   return (
     <div>
-      {" "}
+      <NavBar user={user} logout={logout} />{" "}
       <PostsList
         posts={posts}
         pageNumber={pageNumber}
