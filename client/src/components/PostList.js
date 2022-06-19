@@ -1,7 +1,10 @@
 import React from "react";
 import PostItem from "./PostItem";
+import { useSelector } from "react-redux";
 
-const PostList = ({ posts, pageNumber, setPageNumber }) => {
+const PostList = ({ pageNumber, setPageNumber }) => {
+  const posts = useSelector((state) => state.posts.posts);
+
   return (
     <div>
       <div className="posts-list">
