@@ -1,9 +1,8 @@
 import React from "react";
 
-const PaginationBtn = ({ pageNumber, setPageNumber }) => {
+const PaginationBtn = ({ pageNumber, setPageNumber, totalPages }) => {
   const FIRST_PAGE = 1;
-  //   todo dynamically calculate last page
-  const LAST_PAGE = 3;
+  const LAST_PAGE = totalPages;
 
   const nextPageHandler = () => {
     setPageNumber(pageNumber + 1);
@@ -14,7 +13,7 @@ const PaginationBtn = ({ pageNumber, setPageNumber }) => {
 
   return (
     <div className="buttons-section">
-      {pageNumber <= LAST_PAGE && (
+      {pageNumber < LAST_PAGE && (
         <button onClick={nextPageHandler} className="button">
           NEXT
         </button>

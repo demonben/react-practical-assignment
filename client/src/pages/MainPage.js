@@ -9,18 +9,19 @@ import NavBar from "../components/Navbar";
 const MainPage = ({ user, logout }) => {
   // const [posts, setPosts] = useState([]);
   const [pageNumber, setPageNumber] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
   const dispatch = useDispatch();
 
   useEffect(() => {
     getPostsByPage(pageNumber).then((posts) => {
-      // setPosts(posts);
-      dispatch(changePosts(posts));
+      setTotalPages(posts.totalPages);
+      dispatch(changePosts(posts.result));
     });
   }, [pageNumber]);
   return (
     <div>
       <NavBar user={user} logout={logout} />{" "}
-      <PostsList pageNumber={pageNumber} setPageNumber={setPageNumber} />
+      <PostsList totalPages={totalPages} pageNumber={pageNumber} setPageNumber={setPageNumber} />
     </div>
   );
 };

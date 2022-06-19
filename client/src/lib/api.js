@@ -5,7 +5,7 @@ export const getPostsByPage = async (pageNumber) => {
     const response = await axios.get(
       `http://localhost:8080/post/page/${pageNumber}`
     );
-    return response.data.result;
+    return response.data;
   } catch (error) {
     console.log(error.response);
   }
