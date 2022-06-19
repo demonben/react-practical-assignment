@@ -1,0 +1,30 @@
+.Form {
+  display: flex;
+  height: 85px;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 25px 26px 50px;
+}
+.Input {
+  border: none;
+  height: 40px;
+  color: #011f26;
+  flex-grow: 1;
+  border: 1px solid #026873;
+  border-radius: 4px;
+  margin-right: 5%;
+}
+
+.Button {
+  background-color: aliceblue; 
+  color: #F2668B; 
+  border: 2px solid #F2668B;
+  cursor: pointer;
+  padding: 12px 12px 12px 12px;
+  border-radius: 10%;
+  font-size: 20px;
+}
+.Button:hover {
+  background-color: #F2668B;
+  color: aliceblue;
+}
