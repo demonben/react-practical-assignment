@@ -1,17 +1,27 @@
 import React, { useState } from "react";
 
 import CommentsModal from "./CommentsModal";
+import EditModal from "./EditModal";
 import PostsIcons from "./PostsIcons";
 
 const PostItem = ({ post }) => {
-  const [modalIsOpen, setIsOpen] = useState(false);
+  const [CommentsModalIsOpen, setCommentsModalIsOpen] = useState(false);
+  const [editModalIsOpen, setEditModalIsOpen] = useState(false);
   let votes = post.likes - post.dislikes;
 
+  const openEditModal = () => {
+    console.log("hello world");
+    setEditModalIsOpen(true);
+  };
+  const closeEditModal = () => {
+    setEditModalIsOpen(false);
+  };
+
   const openCommentsModal = () => {
-    setIsOpen(true);
+    setCommentsModalIsOpen(true);
   };
   const closeCommentsModal = () => {
-    setIsOpen(false);
+    setCommentsModalIsOpen(false);
   };
 
   return (
@@ -34,10 +44,17 @@ const PostItem = ({ post }) => {
           <span>{post.date}</span>
         </div>
         <CommentsModal
-          modalIsOpen={modalIsOpen}
+          CommentsModalIsOpen={CommentsModalIsOpen}
           closeCommentsModal={closeCommentsModal}
         />
         <PostsIcons openCommentsModal={openCommentsModal} />
+        <EditModal
+          closeEditModal={closeEditModal}
+          editModalIsOpen={editModalIsOpen}
+        />
+        {localStorage.getItem("user") === post.username && (
+          <button onClick={openEditModal}>edit</button>
+        )}
       </div>
     </div>
   );

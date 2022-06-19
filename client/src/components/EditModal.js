@@ -1,20 +1,22 @@
 import React from "react";
 import Modal from "react-modal";
 import { AiOutlineCloseCircle } from "react-icons/ai";
-const CommentsModal = ({ CommentsModalIsOpen, closeCommentsModal }) => {
+
+const EditModal = ({ editModalIsOpen, closeEditModal }) => {
   return (
     <div>
       {" "}
       <Modal
-        isOpen={CommentsModalIsOpen}
-        onRequestClose={closeCommentsModal}
+        isOpen={editModalIsOpen}
+        onRequestClose={closeEditModal}
         contentLabel="test"
         ariaHideApp={false}
       >
-        <AiOutlineCloseCircle onClick={closeCommentsModal} />
+        <div>edit modal</div>
+        <AiOutlineCloseCircle onClick={closeEditModal} />
       </Modal>
     </div>
   );
 };
 
-export default CommentsModal;
+export default EditModal;
