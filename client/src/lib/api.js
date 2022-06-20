@@ -38,3 +38,11 @@ export const editPosts = async (id, post) => {
     console.log(error.response);
   }
 };
+export const deletePost = async (id) => {
+  try {
+    const response = await axios.delete(`http://localhost:8080/post/${id}`);
+    return response.data;
+  } catch (error) {
+    console.log(error.response);
+  }
+};
