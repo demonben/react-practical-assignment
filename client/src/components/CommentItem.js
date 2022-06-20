@@ -50,7 +50,7 @@ const CommentItem = ({ comment, post }) => {
           <span className="line-title">Timestamp:</span>
           <span>{comment.date}</span>
         </div>
-        <PostsIcons openCommentsModal={openCommentsModal} />
+        <PostsIcons openCommentsModal={openCommentsModal} post={post}/>
         <EditCommentModal
           comment={comment}
           post={post}

@@ -10,24 +10,29 @@ const PostsIcons = ({ openCommentsModal, post }) => {
   const [likes, setLikes] = useState(post.likes);
   const [dislikes, setDislikes] = useState(post.dislikes);
   let user = localStorage.getItem("user");
-  // useEffect(() => {}, [setLikes]);
+  useEffect(() => {
+    if (likes.includes(user)) {
+      let postObj = { likes: likes, dislikes: dislikes };
+      handleVotes(postObj);
+    } else if (dislikes.includes(user)) {
+      let postObj = { likes: likes, dislikes: dislikes };
+      handleVotes(postObj);
+    }
+  }, [likes, dislikes]);
 
   const handleLike = () => {
+    setDislikes(dislikes.filter((dislike) => dislike !== user));
     setLikes([...likes, user]);
-    let postObj = { likes: likes };
-    handleVotes(postObj);
   };
   const handleDislike = () => {
     setLikes(likes.filter((like) => like !== user));
     setDislikes([...dislikes, user]);
-    let postObj = { dislikes: dislikes };
-    handleVotes(postObj);
   };
   const handleVotes = (postObj) => {
-    console.log(postObj);
     editPosts(post.id, postObj);
     dispatch(updateAsync(1));
   };
+
   return (
     <div>
       {" "}
