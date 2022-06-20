@@ -1,12 +1,16 @@
 import React, { useState } from "react";
-
+import { deletePost } from "../lib/api";
 import CommentsModal from "./CommentsModal";
 import EditModal from "./EditModal";
 import PostsIcons from "./PostsIcons";
+import { updateAsync } from "../redux/postsSlice";
+import { useDispatch } from "react-redux";
 
 const PostItem = ({ post }) => {
   const [CommentsModalIsOpen, setCommentsModalIsOpen] = useState(false);
   const [editModalIsOpen, setEditModalIsOpen] = useState(false);
+  const dispatch = useDispatch();
+
   let votes = post.likes - post.dislikes;
 
   const openEditModal = () => {
@@ -21,6 +25,12 @@ const PostItem = ({ post }) => {
   };
   const closeCommentsModal = () => {
     setCommentsModalIsOpen(false);
+  };
+
+  const handleDeletePost = () => {
+    console.log("deleted");
+    deletePost(post.id);
+    dispatch(updateAsync(1))
   };
 
   return (
@@ -54,7 +64,10 @@ const PostItem = ({ post }) => {
           editModalIsOpen={editModalIsOpen}
         />
         {localStorage.getItem("user") === post.username && (
-          <button onClick={openEditModal}>edit</button>
+          <div>
+            <button onClick={openEditModal}>edit</button>
+            <button onClick={handleDeletePost}>delete</button>
+          </div>
         )}
       </div>
     </div>
