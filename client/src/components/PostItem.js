@@ -10,7 +10,6 @@ const PostItem = ({ post }) => {
   let votes = post.likes - post.dislikes;
 
   const openEditModal = () => {
-    console.log("hello world");
     setEditModalIsOpen(true);
   };
   const closeEditModal = () => {
@@ -46,9 +45,11 @@ const PostItem = ({ post }) => {
         <CommentsModal
           CommentsModalIsOpen={CommentsModalIsOpen}
           closeCommentsModal={closeCommentsModal}
+          post={post}
         />
         <PostsIcons openCommentsModal={openCommentsModal} />
         <EditModal
+          post={post}
           closeEditModal={closeEditModal}
           editModalIsOpen={editModalIsOpen}
         />
