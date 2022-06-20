@@ -6,7 +6,7 @@ import { editPosts } from "../lib/api";
 import { updateAsync } from "../redux/postsSlice";
 import { useDispatch } from "react-redux";
 
-const EditModal = ({ editModalIsOpen, closeEditModal, post }) => {
+const EditPostModal = ({ editModalIsOpen, closeEditModal, post }) => {
   const [text, setText] = useState(post.title);
   const dispatch = useDispatch();
 
@@ -47,4 +47,4 @@ const EditModal = ({ editModalIsOpen, closeEditModal, post }) => {
   );
 };
 
-export default EditModal;
+export default EditPostModal;

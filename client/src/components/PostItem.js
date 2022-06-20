@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { deletePost } from "../lib/api";
 import CommentsModal from "./CommentsModal";
-import EditModal from "./EditModal";
+import EditPostModal from "./EditPostModal";
 import PostsIcons from "./PostsIcons";
 import { updateAsync } from "../redux/postsSlice";
 import { useDispatch } from "react-redux";
@@ -11,7 +11,7 @@ const PostItem = ({ post }) => {
   const [editModalIsOpen, setEditModalIsOpen] = useState(false);
   const dispatch = useDispatch();
 
-  let votes = post.likes - post.dislikes;
+  let votes = post.likes.length - post.dislikes.length;
 
   const openEditModal = () => {
     setEditModalIsOpen(true);
@@ -57,8 +57,8 @@ const PostItem = ({ post }) => {
           closeCommentsModal={closeCommentsModal}
           post={post}
         />
-        <PostsIcons openCommentsModal={openCommentsModal} />
-        <EditModal
+        <PostsIcons post={post} openCommentsModal={openCommentsModal} />
+        <EditPostModal
           post={post}
           closeEditModal={closeEditModal}
           editModalIsOpen={editModalIsOpen}
