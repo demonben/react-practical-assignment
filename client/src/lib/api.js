@@ -46,3 +46,12 @@ export const deletePost = async (id) => {
     console.log(error.response);
   }
 };
+export const createComment = async (comment) => {
+  try {
+    const response = await axios.post(`http://localhost:8080/comment`,comment);
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.log(error.response);
+  }
+};
