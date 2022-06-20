@@ -1,15 +1,17 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { getPostsByPage } from "../lib/api";
 import { fetchPosts } from "./postsAPI";
 
 const initialState = {
   posts: [],
+  status: "idle",
 };
 
 export const updateAsync = createAsyncThunk(
   "counter/fetchCount",
   async (page) => {
-    const response = await fetchPosts(page);
-    return response.data;
+    const response = await getPostsByPage(1);
+    return response.result;
   }
 );
 
@@ -17,9 +19,9 @@ const postsSlice = createSlice({
   name: "posts",
   initialState,
   reducers: {
-    changePosts(state, action){
-        state.posts = action.payload
-    }
+    changePosts(state, action) {
+      state.posts = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -28,7 +30,8 @@ const postsSlice = createSlice({
       })
       .addCase(updateAsync.fulfilled, (state, action) => {
         state.status = "idle";
-        console.log("hello world");
+        console.log("async");
+        state.posts = action.payload;
       })
       .addCase(updateAsync.rejected, (state) => {
         state.status = "failed";
