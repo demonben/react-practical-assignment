@@ -1,16 +1,16 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { getPostsByPage } from "../lib/api";
-import { fetchPosts } from "./postsAPI";
 
 const initialState = {
   posts: [],
+  currentPage: 1,
   status: "idle",
 };
 
 export const updateAsync = createAsyncThunk(
   "counter/fetchCount",
   async (page) => {
-    const response = await getPostsByPage(1);
+    const response = await getPostsByPage(page);
     return response.result;
   }
 );
@@ -21,6 +21,12 @@ const postsSlice = createSlice({
   reducers: {
     changePosts(state, action) {
       state.posts = action.payload;
+    },
+    nextPage(state, action) {
+      state.currentPage = action.payload;
+    },
+    previousPage(state, action) {
+      state.currentPage = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -38,6 +44,6 @@ const postsSlice = createSlice({
   },
 });
 
-export const { changePosts } = postsSlice.actions;
+export const { changePosts, nextPage, previousPage } = postsSlice.actions;
 
 export default postsSlice.reducer;
