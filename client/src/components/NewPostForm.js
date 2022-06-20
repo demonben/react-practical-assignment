@@ -3,8 +3,10 @@ import { addPosts } from "../lib/api";
 import styles from "./NewPostForm.module.css";
 import { updateAsync } from "../redux/postsSlice";
 import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 const NewPostForm = () => {
+  const currentPage = useSelector((state) => state.posts.currentPage);
   const dispatch = useDispatch();
   const [text, setText] = useState("");
   
@@ -13,7 +15,7 @@ const NewPostForm = () => {
     let user = localStorage.getItem("user");
     let postObj = { title: text, username: user };
     addPosts(postObj);
-    dispatch(updateAsync(1));
+    dispatch(updateAsync(currentPage));
   };
   return (
     <div>

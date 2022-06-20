@@ -5,8 +5,10 @@ import EditPostModal from "./EditPostModal";
 import PostsIcons from "./PostsIcons";
 import { updateAsync } from "../redux/postsSlice";
 import { useDispatch } from "react-redux";
-
+import { useSelector } from "react-redux";
 const PostItem = ({ post }) => {
+  const currentPage = useSelector((state) => state.posts.currentPage);
+
   const [CommentsModalIsOpen, setCommentsModalIsOpen] = useState(false);
   const [editModalIsOpen, setEditModalIsOpen] = useState(false);
   const dispatch = useDispatch();
@@ -29,7 +31,7 @@ const PostItem = ({ post }) => {
 
   const handleDeletePost = () => {
     deletePost(post.id);
-    dispatch(updateAsync(1));
+    dispatch(updateAsync(currentPage));
   };
 
   return (

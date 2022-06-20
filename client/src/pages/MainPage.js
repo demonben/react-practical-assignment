@@ -6,19 +6,20 @@ import { changePosts } from "../redux/postsSlice";
 import SearchBar from "../components/SearchBar";
 import NavBar from "../components/Navbar";
 import NewPostForm from "../components/NewPostForm";
-
+import { useSelector } from "react-redux";
 const MainPage = ({ user, logout }) => {
-  // const [posts, setPosts] = useState([]);
+  const currentPage = useSelector((state) => state.posts.currentPage);
+
   const [pageNumber, setPageNumber] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    getPostsByPage(pageNumber).then((posts) => {
+    getPostsByPage(currentPage).then((posts) => {
       setTotalPages(posts.totalPages);
       dispatch(changePosts(posts.result));
     });
-  }, [pageNumber]);
+  }, [pageNumber, currentPage]);
   return (
     <div>
       <NavBar user={user} logout={logout} />{" "}

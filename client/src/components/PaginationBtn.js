@@ -1,25 +1,30 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { nextPage, previousPage } from "../redux/postsSlice";
 
 const PaginationBtn = ({ pageNumber, setPageNumber, totalPages }) => {
+  const dispatch = useDispatch();
+  const currentPage = useSelector((state) => state.posts.currentPage);
   const FIRST_PAGE = 1;
   const LAST_PAGE = totalPages;
 
   const nextPageHandler = () => {
-    setPageNumber(pageNumber + 1);
+    dispatch(nextPage(currentPage + 1));
   };
   const prevPageHandler = () => {
-    setPageNumber(pageNumber - 1);
+    dispatch(previousPage(currentPage - 1));
   };
 
   return (
     <div className="buttons-section">
-      {pageNumber < LAST_PAGE && (
+      {currentPage < LAST_PAGE && (
         <button onClick={nextPageHandler} className="button">
           NEXT
         </button>
       )}
 
-      {pageNumber > FIRST_PAGE && (
+      {currentPage > FIRST_PAGE && (
         <button onClick={prevPageHandler} className="button">
           PREV
         </button>

@@ -4,12 +4,14 @@ import { AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
 import { editPosts } from "../lib/api";
 import { updateAsync } from "../redux/postsSlice";
 import { useDispatch } from "react-redux";
-
+import { useSelector } from "react-redux";
 const PostsIcons = ({ openCommentsModal, post }) => {
+  const currentPage = useSelector((state) => state.posts.currentPage);
   const dispatch = useDispatch();
   const [likes, setLikes] = useState(post.likes);
   const [dislikes, setDislikes] = useState(post.dislikes);
   let user = localStorage.getItem("user");
+  
   useEffect(() => {
     if (likes.includes(user)) {
       let postObj = { likes: likes, dislikes: dislikes };
@@ -30,7 +32,7 @@ const PostsIcons = ({ openCommentsModal, post }) => {
   };
   const handleVotes = (postObj) => {
     editPosts(post.id, postObj);
-    dispatch(updateAsync(1));
+    dispatch(updateAsync(currentPage));
   };
 
   return (

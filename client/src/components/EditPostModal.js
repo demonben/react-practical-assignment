@@ -5,8 +5,10 @@ import styles from "./NewPostForm.module.css";
 import { editPosts, uploadPostPicture } from "../lib/api";
 import { updateAsync } from "../redux/postsSlice";
 import { useDispatch } from "react-redux";
-
+import { useSelector } from "react-redux";
 const EditPostModal = ({ editModalIsOpen, closeEditModal, post }) => {
+  const currentPage = useSelector((state) => state.posts.currentPage);
+
   const [text, setText] = useState(post.title);
 
   const [selectedFile, setSelectedFile] = useState(null);
@@ -18,15 +20,15 @@ const EditPostModal = ({ editModalIsOpen, closeEditModal, post }) => {
 
     let postObj = { title: text };
     editPosts(post.id, postObj);
-    dispatch(updateAsync(1));
+    dispatch(updateAsync(currentPage));
   };
-  const boo = () => {
+  const updateImage = () => {
     const formData = new FormData();
     formData.append("picture", selectedFile);
     uploadPostPicture(post.id, formData);
-    dispatch(updateAsync(1));
+    dispatch(updateAsync(currentPage));
   };
-  const foo = (e) => {
+  const handleSelectImage = (e) => {
     setSelectedFile(e.target.files[0]);
   };
   return (
@@ -56,8 +58,8 @@ const EditPostModal = ({ editModalIsOpen, closeEditModal, post }) => {
           </form>
           <div className="App">
             <form>
-              <input type="file" onChange={(e) => foo(e)} />
-              <button onClick={boo}>update img</button>
+              <input type="file" onChange={(e) => handleSelectImage(e)} />
+              <button onClick={updateImage}>update img</button>
             </form>
           </div>
         </div>
