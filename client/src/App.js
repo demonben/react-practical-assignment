@@ -34,6 +34,7 @@ function App() {
 
   const logout = () => {
     setValue(initialState);
+    setIsLogin(false)
     localStorage.setItem("user", initialState.user);
   };
 
