@@ -5,6 +5,7 @@ export const getPostsByPage = async (pageNumber) => {
     const response = await axios.get(
       `http://localhost:8080/post/page/${pageNumber}`
     );
+    // console.log(response.data);
     return response.data;
   } catch (error) {
     console.log(error.response);
@@ -33,7 +34,6 @@ export const addPosts = async (post) => {
 export const editPosts = async (id, post) => {
   try {
     const response = await axios.put(`http://localhost:8080/post/${id}`, post);
-    console.log(response.data);
     return response.data;
   } catch (error) {
     console.log(error.response);
@@ -49,17 +49,31 @@ export const deletePost = async (id) => {
 };
 export const createComment = async (comment) => {
   try {
-    const response = await axios.post(`http://localhost:8080/comment`,comment);
+    const response = await axios.post(`http://localhost:8080/comment`, comment);
     console.log(response.data);
     return response.data;
   } catch (error) {
     console.log(error.response);
   }
 };
-export const editComment = async (id,comment) => {
+export const editComment = async (id, comment) => {
   try {
-    const response = await axios.put(`http://localhost:8080/comment/${id}`,comment);
+    const response = await axios.put(
+      `http://localhost:8080/comment/${id}`,
+      comment
+    );
     console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.log(error.response);
+  }
+};
+export const uploadPostPicture = async (id, formData) => {
+  try {
+    const response = await axios.post(
+      `http://localhost:8080/post/${id}/picture`,
+      formData
+    );
     return response.data;
   } catch (error) {
     console.log(error.response);
