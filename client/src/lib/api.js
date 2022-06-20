@@ -30,3 +30,11 @@ export const addPosts = async (post) => {
     console.log(error.response);
   }
 };
+export const editPosts = async (id, post) => {
+  try {
+    const response = await axios.put(`http://localhost:8080/post/${id}`, post);
+    return response.data;
+  } catch (error) {
+    console.log(error.response);
+  }
+};
