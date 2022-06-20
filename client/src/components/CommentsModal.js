@@ -1,7 +1,10 @@
 import React from "react";
 import Modal from "react-modal";
 import { AiOutlineCloseCircle } from "react-icons/ai";
-const CommentsModal = ({ CommentsModalIsOpen, closeCommentsModal }) => {
+import CommentsList from "./CommentsList";
+import NewCommentModal from "./NewCommentModal";
+
+const CommentsModal = ({ CommentsModalIsOpen, closeCommentsModal, post }) => {
   return (
     <div>
       {" "}
@@ -12,6 +15,8 @@ const CommentsModal = ({ CommentsModalIsOpen, closeCommentsModal }) => {
         ariaHideApp={false}
       >
         <AiOutlineCloseCircle onClick={closeCommentsModal} />
+        <CommentsList post={post} />
+        <NewCommentModal />
       </Modal>
     </div>
   );
