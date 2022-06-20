@@ -8,9 +8,15 @@
 }
 
 /* post item */
-
+.image{
+  display: block;
+  max-width:230px;
+  max-height:95px;
+  width: auto;
+  height: auto;
+}
 .post-item {
-  height: 140px;
+  height: 250px;
   flex: 0 0 215px;
   margin: 1em 20px;
   border: 2px blue solid;

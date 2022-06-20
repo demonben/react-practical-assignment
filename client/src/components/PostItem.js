@@ -28,14 +28,20 @@ const PostItem = ({ post }) => {
   };
 
   const handleDeletePost = () => {
-    console.log("deleted");
     deletePost(post.id);
-    dispatch(updateAsync(1))
+    dispatch(updateAsync(1));
   };
 
   return (
     <div className="post-item">
       <div>
+        <img
+          className="image"
+          src={post.imageSrc}
+          alt="no post img"
+          width="200"
+          height="200"
+        ></img>
         <div className="post-card">
           <span className="line-title">Author:</span>
           <span>{post.username}</span>
