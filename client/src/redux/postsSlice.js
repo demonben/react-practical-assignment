@@ -30,7 +30,6 @@ const postsSlice = createSlice({
       })
       .addCase(updateAsync.fulfilled, (state, action) => {
         state.status = "idle";
-        console.log("async");
         state.posts = action.payload;
       })
       .addCase(updateAsync.rejected, (state) => {
