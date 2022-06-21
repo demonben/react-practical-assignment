@@ -1,15 +1,17 @@
 import React, { useState } from "react";
 import { updateAsync } from "../redux/postsSlice";
 import { useDispatch } from "react-redux";
-import PostsIcons from "./PostsIcons";
 import EditCommentModal from "./EditCommentModal";
+import CommentsIcons from "./CommentsIcons";
+import { deleteComment } from "../lib/api";
+import { useSelector } from "react-redux";
 
 const CommentItem = ({ comment, post }) => {
-  const [CommentsModalIsOpen, setCommentsModalIsOpen] = useState(false);
+  const currentPage = useSelector((state) => state.posts.currentPage);
   const [editModalIsOpen, setEditModalIsOpen] = useState(false);
   const dispatch = useDispatch();
 
-  let votes = comment.likes - comment.dislikes;
+  let votes = comment.likes.length - comment.dislikes.length;
 
   const openEditModal = () => {
     setEditModalIsOpen(true);
@@ -18,17 +20,11 @@ const CommentItem = ({ comment, post }) => {
     setEditModalIsOpen(false);
   };
 
-  const openCommentsModal = () => {
-    setCommentsModalIsOpen(true);
-  };
-  const closeCommentsModal = () => {
-    setCommentsModalIsOpen(false);
-  };
 
   const handleDeletePost = () => {
-    console.log("deleted");
-    // deletePost(post.id);
-    // dispatch(updateAsync(1))
+    console.log("comment.id", comment.id);
+    deleteComment(comment.id);
+    dispatch(updateAsync(currentPage));
   };
 
   return (
@@ -50,7 +46,7 @@ const CommentItem = ({ comment, post }) => {
           <span className="line-title">Timestamp:</span>
           <span>{comment.date}</span>
         </div>
-        <PostsIcons openCommentsModal={openCommentsModal} post={post}/>
+        <CommentsIcons post={post} comment={comment}/>
         <EditCommentModal
           comment={comment}
           post={post}

@@ -3,8 +3,10 @@ import { createComment } from "../lib/api";
 import styles from "./NewPostForm.module.css";
 import { updateAsync } from "../redux/postsSlice";
 import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 const NewCommentForm = ({ post }) => {
+  const currentPage = useSelector((state) => state.posts.currentPage);
   const dispatch = useDispatch();
   const [text, setText] = useState("");
 
@@ -13,7 +15,7 @@ const NewCommentForm = ({ post }) => {
     let user = localStorage.getItem("user");
     let commentObj = { text: text, postId: post.id, username: user };
     createComment(commentObj);
-    dispatch(updateAsync(1));
+    dispatch(updateAsync(currentPage));
   };
   return (
     <div>
