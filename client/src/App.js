@@ -3,39 +3,35 @@ import "./App.css";
 import LoginPage from "./pages/LoginPage";
 import MainPage from "./pages/MainPage";
 
-const initialState = {
-  user: "",
-};
-
 function App() {
-  const [value, setValue] = useState(initialState);
+  const [user, setUser] = useState("");
   const [isLogin, setIsLogin] = useState(false);
 
   useEffect(() => {
     if (localStorage.getItem("user")) {
       setIsLogin(true);
-      setValue({ ...value, user: localStorage.getItem("user") });
+      setUser(localStorage.getItem("user"));
     } else {
       setIsLogin(false);
     }
   }, [isLogin]);
 
   const handleChange = (e) => {
-    setValue({ ...value, [e.target.name]: e.target.value });
+    setUser(e.target.value);
   };
 
   const onSubmitLogin = (e) => {
     e.preventDefault(e.target);
-    if (value.user) {
+    if (user) {
       setIsLogin(true);
     }
-    localStorage.setItem("user", value.user);
+    localStorage.setItem("user", user);
   };
 
   const logout = () => {
-    setValue(initialState);
-    setIsLogin(false)
-    localStorage.setItem("user", initialState.user);
+    setUser("");
+    setIsLogin(false);
+    localStorage.clear();
   };
 
   return (
@@ -44,10 +40,10 @@ function App() {
         <LoginPage
           onSubmitLogin={onSubmitLogin}
           handleChange={handleChange}
-          user={value.user}
+          user={user}
         />
       ) : (
-        <MainPage user={value.user} logout={logout} />
+        <MainPage user={user} logout={logout} />
       )}
     </div>
   );

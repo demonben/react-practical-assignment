@@ -5,27 +5,23 @@ import styles from "./NewPostForm.module.css";
 import { editComment } from "../lib/api";
 import { updateAsync } from "../redux/postsSlice";
 import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
-const EditCommentModal = ({
-  editModalIsOpen,
-  closeEditModal,
-  post,
-  comment,
-}) => {
+const EditCommentModal = ({ editModalIsOpen, closeEditModal, comment }) => {
+  const currentPage = useSelector((state) => state.posts.currentPage);
   const [text, setText] = useState(comment.text);
   const dispatch = useDispatch();
   const submitHandler = (event) => {
     event.preventDefault();
-
     let commentObj = {
       text: text,
       likes: comment.likes,
       dislikes: comment.dislikes,
     };
-    console.log(commentObj);
 
     editComment(comment.id, commentObj);
-    dispatch(updateAsync(1));
+    dispatch(updateAsync(currentPage));
+    closeEditModal();
   };
   return (
     <div>
@@ -35,7 +31,11 @@ const EditCommentModal = ({
         contentLabel="test"
         ariaHideApp={false}
       >
-        <AiOutlineCloseCircle className="close-icon" size={30} onClick={closeEditModal} />{" "}
+        <AiOutlineCloseCircle
+          className="close-icon"
+          size={30}
+          onClick={closeEditModal}
+        />{" "}
         <div>
           {" "}
           <form onSubmit={submitHandler} className={styles.Form}>

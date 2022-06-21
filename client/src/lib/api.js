@@ -5,7 +5,6 @@ export const getPostsByPage = async (pageNumber) => {
     const response = await axios.get(
       `http://localhost:8080/post/page/${pageNumber}`
     );
-    // console.log(response.data);
     return response.data;
   } catch (error) {
     console.log(error.response);
@@ -16,7 +15,6 @@ export const searchPosts = async (text) => {
     const response = await axios.get(
       `http://localhost:8080/post/search/${text}`
     );
-    console.log(response.data);
     return response.data;
   } catch (error) {
     console.log(error.response);
@@ -25,7 +23,6 @@ export const searchPosts = async (text) => {
 export const addPosts = async (post) => {
   try {
     const response = await axios.post(`http://localhost:8080/post`, post);
-    console.log(response.data);
     return response.data;
   } catch (error) {
     console.log(error.response);
@@ -61,7 +58,6 @@ export const editComment = async (id, comment) => {
       `http://localhost:8080/comment/${id}`,
       comment
     );
-    console.log(response.data);
     return response.data;
   } catch (error) {
     console.log(error.response);

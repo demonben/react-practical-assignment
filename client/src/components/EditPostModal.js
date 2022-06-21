@@ -6,21 +6,19 @@ import { editPosts, uploadPostPicture } from "../lib/api";
 import { updateAsync } from "../redux/postsSlice";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
+
 const EditPostModal = ({ editModalIsOpen, closeEditModal, post }) => {
   const currentPage = useSelector((state) => state.posts.currentPage);
-
   const [text, setText] = useState(post.title);
-
   const [selectedFile, setSelectedFile] = useState(null);
-
   const dispatch = useDispatch();
 
   const submitHandler = (event) => {
     event.preventDefault();
-
     let postObj = { title: text };
     editPosts(post.id, postObj);
     dispatch(updateAsync(currentPage));
+    closeEditModal()
   };
   const updateImage = () => {
     const formData = new FormData();
@@ -39,7 +37,11 @@ const EditPostModal = ({ editModalIsOpen, closeEditModal, post }) => {
         contentLabel="test"
         ariaHideApp={false}
       >
-        <AiOutlineCloseCircle className="" size={30} onClick={closeEditModal} />{" "}
+        <AiOutlineCloseCircle
+          className="close-icon"
+          size={30}
+          onClick={closeEditModal}
+        />{" "}
         <div>
           {" "}
           <form onSubmit={submitHandler} className={styles.Form}>

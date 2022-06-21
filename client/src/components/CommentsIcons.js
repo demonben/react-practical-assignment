@@ -47,7 +47,7 @@ const CommentsIcons = ({ post, comment, openEditModal, handleDeletePost }) => {
         {!dislikes.includes(user) && (
           <AiOutlineDislike onClick={handleDislike} className="post-icon" />
         )}
-        {localStorage.getItem("user") === post.username && (
+        {localStorage.getItem("user") === comment.username && (
           <div>
             <FiEdit className="post-icon" onClick={openEditModal} />
             <RiDeleteBin5Line
