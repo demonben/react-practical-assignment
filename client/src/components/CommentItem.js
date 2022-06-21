@@ -20,9 +20,7 @@ const CommentItem = ({ comment, post }) => {
     setEditModalIsOpen(false);
   };
 
-
   const handleDeletePost = () => {
-    console.log("comment.id", comment.id);
     deleteComment(comment.id);
     dispatch(updateAsync(currentPage));
   };
@@ -46,19 +44,18 @@ const CommentItem = ({ comment, post }) => {
           <span className="line-title">Timestamp:</span>
           <span>{comment.date}</span>
         </div>
-        <CommentsIcons post={post} comment={comment}/>
+        <CommentsIcons
+          post={post}
+          comment={comment}
+          handleDeletePost={handleDeletePost}
+          openEditModal={openEditModal}
+        />
         <EditCommentModal
           comment={comment}
           post={post}
           closeEditModal={closeEditModal}
           editModalIsOpen={editModalIsOpen}
         />
-        {localStorage.getItem("user") === comment.username && (
-          <div>
-            <button onClick={openEditModal}>edit</button>
-            <button onClick={handleDeletePost}>delete</button>
-          </div>
-        )}
       </div>
     </div>
   );
