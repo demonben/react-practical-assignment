@@ -79,3 +79,11 @@ export const uploadPostPicture = async (id, formData) => {
     console.log(error.response);
   }
 };
+export const deleteComment = async (id) => {
+  try {
+    const response = await axios.delete(`http://localhost:8080/comment/${id}`);
+    return response.data;
+  } catch (error) {
+    console.log(error.response);
+  }
+};
