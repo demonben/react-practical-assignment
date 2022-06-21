@@ -39,7 +39,7 @@ const EditPostModal = ({ editModalIsOpen, closeEditModal, post }) => {
         contentLabel="test"
         ariaHideApp={false}
       >
-        <AiOutlineCloseCircle onClick={closeEditModal} />{" "}
+        <AiOutlineCloseCircle className="" size={30} onClick={closeEditModal} />{" "}
         <div>
           {" "}
           <form onSubmit={submitHandler} className={styles.Form}>
@@ -56,7 +56,7 @@ const EditPostModal = ({ editModalIsOpen, closeEditModal, post }) => {
               Edit
             </button>
           </form>
-          <div className="App">
+          <div id="image-up">
             <form>
               <input type="file" onChange={(e) => handleSelectImage(e)} />
               <button onClick={updateImage}>update img</button>

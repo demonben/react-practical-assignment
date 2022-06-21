@@ -47,17 +47,17 @@ const PostsIcons = ({
     <div>
       {" "}
       <div className="post-icons-section">
-        <FaRegCommentDots className="post-icon" onClick={openCommentsModal} />
+        <FaRegCommentDots size={20} className="post-icon" onClick={openCommentsModal} />
         {!likes.includes(user) && (
-          <AiOutlineLike className="post-icon" onClick={handleLike} />
+          <AiOutlineLike size={20}  className="post-icon" onClick={handleLike} />
         )}
         {!dislikes.includes(user) && (
-          <AiOutlineDislike onClick={handleDislike} className="post-icon" />
+          <AiOutlineDislike size={20}  onClick={handleDislike} className="post-icon" />
         )}
         {localStorage.getItem("user") === post.username && (
           <div>
-            <FiEdit className="post-icon" onClick={openEditModal} />
-            <RiDeleteBin5Line
+            <FiEdit size={20}  className="post-icon" onClick={openEditModal} />
+            <RiDeleteBin5Line size={20} 
               className="post-icon"
               onClick={handleDeletePost}
             />

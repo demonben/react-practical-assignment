@@ -35,7 +35,7 @@ const EditCommentModal = ({
         contentLabel="test"
         ariaHideApp={false}
       >
-        <AiOutlineCloseCircle onClick={closeEditModal} />{" "}
+        <AiOutlineCloseCircle className="close-icon" size={30} onClick={closeEditModal} />{" "}
         <div>
           {" "}
           <form onSubmit={submitHandler} className={styles.Form}>
