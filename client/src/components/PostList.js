@@ -3,7 +3,7 @@ import PostItem from "./PostItem";
 import PaginationBtn from "./PaginationBtn";
 import { useSelector } from "react-redux";
 
-const PostList = ({ totalPages, pageNumber, setPageNumber }) => {
+const PostList = () => {
   const posts = useSelector((state) => state.posts.posts);
 
   return (
@@ -13,7 +13,7 @@ const PostList = ({ totalPages, pageNumber, setPageNumber }) => {
           <PostItem post={post} key={post.id} />
         ))}
       </div>
-      <PaginationBtn pageNumber={pageNumber} setPageNumber={setPageNumber} totalPages={totalPages}/>
+      <PaginationBtn />
     </div>
   );
 };

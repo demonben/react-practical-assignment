@@ -14,7 +14,7 @@ const MainPage = ({ user, logout }) => {
   const [pageNumber, setPageNumber] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const dispatch = useDispatch();
-  
+
   useEffect(() => {
     getPostsByPage(currentPage).then((posts) => {
       setTotalPages(posts.totalPages);
@@ -29,11 +29,7 @@ const MainPage = ({ user, logout }) => {
       ) : (
         <div>
           <SearchBar setPageNumber={setPageNumber} pageNumber={pageNumber} />
-          <PostsList
-            totalPages={totalPages}
-            pageNumber={pageNumber}
-            setPageNumber={setPageNumber}
-          />
+          <PostsList />
         </div>
       )}
       <NewPostForm />

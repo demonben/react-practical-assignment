@@ -4,6 +4,7 @@ import { getPostsByPage } from "../lib/api";
 const initialState = {
   posts: [],
   currentPage: 1,
+  totalPages:1,
   status: "idle",
 };
 
@@ -11,7 +12,7 @@ export const updateAsync = createAsyncThunk(
   "counter/fetchCount",
   async (page) => {
     const response = await getPostsByPage(page);
-    return response.result;
+    return response;
   }
 );
 
@@ -36,7 +37,8 @@ const postsSlice = createSlice({
       })
       .addCase(updateAsync.fulfilled, (state, action) => {
         state.status = "idle";
-        state.posts = action.payload;
+        state.totalPages = action.payload.totalPages
+        state.posts = action.payload.result;
       })
       .addCase(updateAsync.rejected, (state) => {
         state.status = "failed";
