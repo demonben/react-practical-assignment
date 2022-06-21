@@ -4,7 +4,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  padding: 40px calc((100% - (255px * 3)) / 3);
+  padding: 20px calc((100% - (255px * 3)) / 3);
 }
 
 /* post item */
@@ -16,13 +16,13 @@
   height: auto;
 }
 .post-item {
-  height: 250px;
+  /* height: 250px; */
   flex: 0 0 215px;
   margin: 1em 20px;
-  border: 2px blue solid;
 }
 .post-icon {
   margin: 5px;
+  cursor: pointer;
 }
 .post-icon:hover {
   margin: 5px;
@@ -44,10 +44,13 @@
 .post-card {
   display: flex;
   flex-direction: row;
+  margin: 5px 8px 5px 5px;
 }
 .post-icons-section {
   display: flex;
   flex-direction: row;
+  /* align-items: center;
+  justify-content: center; */
 }
 /* buttons */
 .button {
@@ -67,4 +70,12 @@
 .buttons-section {
   text-align: center;
   margin: 10px;
+}
+/* comments */
+.close-icon{
+cursor: pointer;
+}
+
+#image-up{
+  padding-left: 50px;
 }

@@ -10,10 +10,10 @@
 .UserIcon {
   width: 150px;
   height: 50px;
-  border: 1px solid #F2668B;
+  border: 1px solid rgb(2, 63, 70);
   border-radius: 10%;
   background-color: aliceblue;
-  color: #F2668B;
+  color: #026873;
   display: flex;
   align-items: center;
   justify-content: center;
