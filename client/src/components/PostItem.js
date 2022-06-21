@@ -3,12 +3,12 @@ import { deletePost } from "../lib/api";
 import CommentsModal from "./CommentsModal";
 import EditPostModal from "./EditPostModal";
 import PostsIcons from "./PostsIcons";
-import { FiEdit } from "react-icons/fi";
-import { RiDeleteBin5Line } from "react-icons/ri";
-
 import { updateAsync } from "../redux/postsSlice";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
+import Card from "@mui/material/Card";
+import CardMedia from "@mui/material/CardMedia";
+
 const PostItem = ({ post }) => {
   const currentPage = useSelector((state) => state.posts.currentPage);
 
@@ -39,48 +39,56 @@ const PostItem = ({ post }) => {
 
   return (
     <div className="post-item">
-      <div>
-        <img
-          className="image"
-          src={post.imageSrc}
-          alt="no post img"
-          width="200"
-          height="200"
-        ></img>
-        <div className="post-card">
-          <span className="line-title">Author:</span>
-          <span>{post.username}</span>
+    <Card>
+        <div>
+        <CardMedia
+        component="img"
+        height="140"
+        image={post.imageSrc}
+        alt="no post img"
+      />
+          {/* <img
+            className="image"
+            src={post.imageSrc}
+            alt="no post img"
+            width="200"
+            height="200"
+          ></img> */}
+          <div className="post-card">
+            <span className="line-title">Author:</span>
+            <span>{post.username}</span>
+          </div>
+          <div className="post-card">
+            <span className="line-title">Title:</span>
+            <span>{post.title}</span>
+          </div>
+          <div className="post-card">
+            <span className="line-title">Votes:</span>
+            <span>{votes}</span>
+          </div>
+          <div className="post-card">
+            <span className="line-title">Timestamp:</span>
+            <span>{post.date}</span>
+          </div>
+          <CommentsModal
+            CommentsModalIsOpen={CommentsModalIsOpen}
+            closeCommentsModal={closeCommentsModal}
+            post={post}
+          />
+          <PostsIcons
+            post={post}
+            openCommentsModal={openCommentsModal}
+            openEditModal={openEditModal}
+            handleDeletePost={handleDeletePost}
+          />
+          <EditPostModal
+            post={post}
+            closeEditModal={closeEditModal}
+            editModalIsOpen={editModalIsOpen}
+          />
         </div>
-        <div className="post-card">
-          <span className="line-title">Title:</span>
-          <span>{post.title}</span>
-        </div>
-        <div className="post-card">
-          <span className="line-title">Votes:</span>
-          <span>{votes}</span>
-        </div>
-        <div className="post-card">
-          <span className="line-title">Timestamp:</span>
-          <span>{post.date}</span>
-        </div>
-        <CommentsModal
-          CommentsModalIsOpen={CommentsModalIsOpen}
-          closeCommentsModal={closeCommentsModal}
-          post={post}
-        />
-        <PostsIcons
-          post={post}
-          openCommentsModal={openCommentsModal}
-          openEditModal={openEditModal}
-          handleDeletePost={handleDeletePost}
-        />
-        <EditPostModal
-          post={post}
-          closeEditModal={closeEditModal}
-          editModalIsOpen={editModalIsOpen}
-        />
+    </Card>
       </div>
-    </div>
   );
 };
 
