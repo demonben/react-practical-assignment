@@ -5,6 +5,7 @@ import { editPosts } from "../lib/api";
 import { updateAsync } from "../redux/postsSlice";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
+
 const PostsIcons = ({ openCommentsModal, post }) => {
   const currentPage = useSelector((state) => state.posts.currentPage);
   const dispatch = useDispatch();

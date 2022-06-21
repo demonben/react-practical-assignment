@@ -8,9 +8,9 @@ const NavBar = ({user,logout}) => {
       {" "}
       <div>
         <div className={styles.Navbar}>
-          <h3>Chat</h3>
+          <h3>Wall</h3>
           <div className={styles.UserIcon}>
-            {user.substring(0, 1)}
+            {user}
           </div>
           <button className={styles.LogOutButton}
            onClick={logout}
