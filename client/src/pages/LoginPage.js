@@ -1,22 +1,23 @@
 import React from "react";
+import styles from "../components/NewPostForm.module.css";
 
 const LoginPage = ({ user, handleChange, onSubmitLogin }) => {
   return (
     <div>
-      <div>
+      <form className={styles.Form}>
         {" "}
-        <label className="form-label">User Name</label>
         <input
           type="text"
+          placeholder=" Type your user name.."
           name="user"
           value={user}
           onChange={handleChange}
-          className="form-input"
+          className={styles.Input}
         ></input>
-        <button type="submit" className="btn btn-block" onClick={onSubmitLogin}>
-          Submit{" "}
+        <button type="submit" className={styles.Button} onClick={onSubmitLogin}>
+          Login{" "}
         </button>
-      </div>
+      </form>
     </div>
   );
 };
