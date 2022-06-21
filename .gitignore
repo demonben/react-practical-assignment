@@ -7,7 +7,6 @@
 /client/.pnp
 /client/.pnp.js
 
-/server/public
 # testing
 /client/coverage
 
