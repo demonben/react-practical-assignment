@@ -7,7 +7,6 @@ import { updateAsync } from "../redux/postsSlice";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import Card from "@mui/material/Card";
-import CardMedia from "@mui/material/CardMedia";
 
 const PostItem = ({ post }) => {
   const currentPage = useSelector((state) => state.posts.currentPage);
@@ -32,14 +31,14 @@ const PostItem = ({ post }) => {
     setCommentsModalIsOpen(false);
   };
 
-  const handleDeletePost = () => {
-    deletePost(post.id);
+  const handleDeletePost = async () => {
+    await deletePost(post.id);
     dispatch(updateAsync(currentPage));
   };
 
   return (
     <div className="post-item">
-    <Card>
+      <Card>
         <div>
           <img
             className="image"
@@ -81,8 +80,8 @@ const PostItem = ({ post }) => {
             editModalIsOpen={editModalIsOpen}
           />
         </div>
-    </Card>
-      </div>
+      </Card>
+    </div>
   );
 };
 

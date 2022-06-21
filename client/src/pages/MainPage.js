@@ -12,12 +12,10 @@ const MainPage = ({ user, logout }) => {
   const posts = useSelector((state) => state.posts.posts);
 
   const [pageNumber, setPageNumber] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
   const dispatch = useDispatch();
 
   useEffect(() => {
     getPostsByPage(currentPage).then((posts) => {
-      setTotalPages(posts.totalPages);
       dispatch(changePosts(posts.result));
     });
   }, [pageNumber, currentPage]);

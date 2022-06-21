@@ -32,8 +32,8 @@ const CommentsIcons = ({ post, comment, openEditModal, handleDeletePost }) => {
     setLikes(likes.filter((like) => like !== user));
     setDislikes([...dislikes, user]);
   };
-  const handleVotes = (commentObj) => {
-    editComment(comment.id, commentObj);
+  const handleVotes = async (commentObj) => {
+    await editComment(comment.id, commentObj);
     dispatch(updateAsync(currentPage));
   };
 

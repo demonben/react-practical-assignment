@@ -4,6 +4,7 @@ import styles from "./NewPostForm.module.css";
 import { updateAsync } from "../redux/postsSlice";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
+import Loader from "./Loader";
 
 const NewPostForm = () => {
   const currentPage = useSelector((state) => state.posts.currentPage);
@@ -11,15 +12,14 @@ const NewPostForm = () => {
   const [text, setText] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  const submitHandler = (event) => {
+  const submitHandler = async (event) => {
     event.preventDefault();
-    setIsLoading(true)
+    setIsLoading(true);
     let user = localStorage.getItem("user");
     let postObj = { title: text, username: user };
-    addPosts(postObj);
+    await addPosts(postObj);
     dispatch(updateAsync(currentPage));
-    setIsLoading(false)
-
+    setIsLoading(false);
   };
   return (
     <div>
@@ -39,7 +39,7 @@ const NewPostForm = () => {
             Add
           </button>
         ) : (
-          <span>Loading...</span>
+          <Loader/>
         )}
       </form>
     </div>

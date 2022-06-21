@@ -6,26 +6,31 @@ import { editPosts, uploadPostPicture } from "../lib/api";
 import { updateAsync } from "../redux/postsSlice";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
+import Loader from "./Loader";
 
 const EditPostModal = ({ editModalIsOpen, closeEditModal, post }) => {
   const currentPage = useSelector((state) => state.posts.currentPage);
   const [text, setText] = useState(post.title);
   const [selectedFile, setSelectedFile] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
 
-  const submitHandler = (event) => {
+  const submitHandler = async (event) => {
     event.preventDefault();
+    setIsLoading(true);
+
     let postObj = { title: text };
-    editPosts(post.id, postObj);
+    await editPosts(post.id, postObj);
+    if (selectedFile) {
+      const formData = new FormData();
+      formData.append("picture", selectedFile);
+      await uploadPostPicture(post.id, formData);
+    }
     dispatch(updateAsync(currentPage));
-    closeEditModal()
+    setIsLoading(false);
+    closeEditModal();
   };
-  const updateImage = () => {
-    const formData = new FormData();
-    formData.append("picture", selectedFile);
-    uploadPostPicture(post.id, formData);
-    dispatch(updateAsync(currentPage));
-  };
+
   const handleSelectImage = (e) => {
     setSelectedFile(e.target.files[0]);
   };
@@ -46,6 +51,7 @@ const EditPostModal = ({ editModalIsOpen, closeEditModal, post }) => {
         <div>
           {" "}
           <form onSubmit={submitHandler} className={styles.Form}>
+            <input type="file" onChange={(e) => handleSelectImage(e)} />
             <input
               className={styles.Input}
               placeholder=" Type search text.."
@@ -55,16 +61,15 @@ const EditPostModal = ({ editModalIsOpen, closeEditModal, post }) => {
               value={text}
               onChange={(event) => setText(event.target.value)}
             />
-            <button className={styles.Button} type="submit">
-              Edit
-            </button>
+            {!isLoading ? (
+              <button className={styles.Button} type="submit">
+                Edit
+              </button>
+            ) : (
+              <Loader />
+            )}
           </form>
-          <div id="image-up">
-            <form>
-              <input type="file" onChange={(e) => handleSelectImage(e)} />
-              <button onClick={updateImage}>update img.</button>
-            </form>
-          </div>
+          <div id="image-up"></div>
         </div>
       </Modal>
     </div>

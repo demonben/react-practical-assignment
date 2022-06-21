@@ -38,8 +38,8 @@ const PostsIcons = ({
     setLikes(likes.filter((like) => like !== user));
     setDislikes([...dislikes, user]);
   };
-  const handleVotes = (postObj) => {
-    editPosts(post.id, postObj);
+  const handleVotes = async (postObj) => {
+    await editPosts(post.id, postObj);
     dispatch(updateAsync(currentPage));
   };
 
@@ -47,17 +47,26 @@ const PostsIcons = ({
     <div>
       {" "}
       <div className="post-icons-section">
-        <FaRegCommentDots size={20} className="post-icon" onClick={openCommentsModal} />
+        <FaRegCommentDots
+          size={20}
+          className="post-icon"
+          onClick={openCommentsModal}
+        />
         {!likes.includes(user) && (
-          <AiOutlineLike size={20}  className="post-icon" onClick={handleLike} />
+          <AiOutlineLike size={20} className="post-icon" onClick={handleLike} />
         )}
         {!dislikes.includes(user) && (
-          <AiOutlineDislike size={20}  onClick={handleDislike} className="post-icon" />
+          <AiOutlineDislike
+            size={20}
+            onClick={handleDislike}
+            className="post-icon"
+          />
         )}
         {localStorage.getItem("user") === post.username && (
           <div>
-            <FiEdit size={20}  className="post-icon" onClick={openEditModal} />
-            <RiDeleteBin5Line size={20} 
+            <FiEdit size={20} className="post-icon" onClick={openEditModal} />
+            <RiDeleteBin5Line
+              size={20}
               className="post-icon"
               onClick={handleDeletePost}
             />

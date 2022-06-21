@@ -4,7 +4,7 @@ import { getPostsByPage } from "../lib/api";
 const initialState = {
   posts: [],
   currentPage: 1,
-  totalPages:1,
+  totalPages: 1,
   status: "idle",
 };
 
@@ -37,7 +37,7 @@ const postsSlice = createSlice({
       })
       .addCase(updateAsync.fulfilled, (state, action) => {
         state.status = "idle";
-        state.totalPages = action.payload.totalPages
+        state.totalPages = action.payload.totalPages;
         state.posts = action.payload.result;
       })
       .addCase(updateAsync.rejected, (state) => {

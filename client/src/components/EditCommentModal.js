@@ -11,7 +11,7 @@ const EditCommentModal = ({ editModalIsOpen, closeEditModal, comment }) => {
   const currentPage = useSelector((state) => state.posts.currentPage);
   const [text, setText] = useState(comment.text);
   const dispatch = useDispatch();
-  const submitHandler = (event) => {
+  const submitHandler = async (event) => {
     event.preventDefault();
     let commentObj = {
       text: text,
@@ -19,7 +19,7 @@ const EditCommentModal = ({ editModalIsOpen, closeEditModal, comment }) => {
       dislikes: comment.dislikes,
     };
 
-    editComment(comment.id, commentObj);
+    await editComment(comment.id, commentObj);
     dispatch(updateAsync(currentPage));
     closeEditModal();
   };
