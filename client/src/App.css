@@ -24,6 +24,10 @@
 .post-icon {
   margin: 5px;
 }
+.post-icon:hover {
+  margin: 5px;
+  color: #f2668b;
+}
 .icon-button {
   background: none;
   color: inherit;

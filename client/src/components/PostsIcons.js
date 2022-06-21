@@ -1,18 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { FaRegCommentDots } from "react-icons/fa";
 import { AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
+import { FiEdit } from "react-icons/fi";
+import { RiDeleteBin5Line } from "react-icons/ri";
 import { editPosts } from "../lib/api";
 import { updateAsync } from "../redux/postsSlice";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 
-const PostsIcons = ({ openCommentsModal, post }) => {
+const PostsIcons = ({
+  openCommentsModal,
+  post,
+  openEditModal,
+  handleDeletePost,
+}) => {
   const currentPage = useSelector((state) => state.posts.currentPage);
   const dispatch = useDispatch();
   const [likes, setLikes] = useState(post.likes);
   const [dislikes, setDislikes] = useState(post.dislikes);
   let user = localStorage.getItem("user");
-  
+
   useEffect(() => {
     if (likes.includes(user)) {
       let postObj = { likes: likes, dislikes: dislikes };
@@ -40,18 +47,21 @@ const PostsIcons = ({ openCommentsModal, post }) => {
     <div>
       {" "}
       <div className="post-icons-section">
-        <button className="icon-button" onClick={openCommentsModal}>
-          <FaRegCommentDots className="post-icon" />
-        </button>
+        <FaRegCommentDots className="post-icon" onClick={openCommentsModal} />
         {!likes.includes(user) && (
-          <button className="icon-button" onClick={handleLike}>
-            <AiOutlineLike className="post-icon" />
-          </button>
+          <AiOutlineLike className="post-icon" onClick={handleLike} />
         )}
         {!dislikes.includes(user) && (
-          <button className="icon-button" onClick={handleDislike}>
-            <AiOutlineDislike className="post-icon" />
-          </button>
+          <AiOutlineDislike onClick={handleDislike} className="post-icon" />
+        )}
+        {localStorage.getItem("user") === post.username && (
+          <div>
+            <FiEdit className="post-icon" onClick={openEditModal} />
+            <RiDeleteBin5Line
+              className="post-icon"
+              onClick={handleDeletePost}
+            />
+          </div>
         )}
       </div>
     </div>

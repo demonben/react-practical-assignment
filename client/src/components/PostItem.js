@@ -3,6 +3,9 @@ import { deletePost } from "../lib/api";
 import CommentsModal from "./CommentsModal";
 import EditPostModal from "./EditPostModal";
 import PostsIcons from "./PostsIcons";
+import { FiEdit } from "react-icons/fi";
+import { RiDeleteBin5Line } from "react-icons/ri";
+
 import { updateAsync } from "../redux/postsSlice";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
@@ -65,18 +68,17 @@ const PostItem = ({ post }) => {
           closeCommentsModal={closeCommentsModal}
           post={post}
         />
-        <PostsIcons post={post} openCommentsModal={openCommentsModal} />
+        <PostsIcons
+          post={post}
+          openCommentsModal={openCommentsModal}
+          openEditModal={openEditModal}
+          handleDeletePost={handleDeletePost}
+        />
         <EditPostModal
           post={post}
           closeEditModal={closeEditModal}
           editModalIsOpen={editModalIsOpen}
         />
-        {localStorage.getItem("user") === post.username && (
-          <div>
-            <button onClick={openEditModal}>edit</button>
-            <button onClick={handleDeletePost}>delete</button>
-          </div>
-        )}
       </div>
     </div>
   );
