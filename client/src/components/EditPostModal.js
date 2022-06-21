@@ -42,6 +42,7 @@ const EditPostModal = ({ editModalIsOpen, closeEditModal, post }) => {
           size={30}
           onClick={closeEditModal}
         />{" "}
+        <h1 className="title-text">Edit your post</h1>
         <div>
           {" "}
           <form onSubmit={submitHandler} className={styles.Form}>
@@ -61,7 +62,7 @@ const EditPostModal = ({ editModalIsOpen, closeEditModal, post }) => {
           <div id="image-up">
             <form>
               <input type="file" onChange={(e) => handleSelectImage(e)} />
-              <button onClick={updateImage}>update img</button>
+              <button onClick={updateImage}>update img.</button>
             </form>
           </div>
         </div>

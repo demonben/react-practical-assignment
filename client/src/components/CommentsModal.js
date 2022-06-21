@@ -15,6 +15,7 @@ const CommentsModal = ({ CommentsModalIsOpen, closeCommentsModal, post }) => {
         ariaHideApp={false}
       >
         <AiOutlineCloseCircle className="close-icon" size={30} onClick={closeCommentsModal} />
+        <h1 className="title-text">Comments</h1>
         <CommentsList post={post} />
         <NewCommentForm post={post}/>
       </Modal>

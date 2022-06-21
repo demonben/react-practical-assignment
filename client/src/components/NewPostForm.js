@@ -9,13 +9,17 @@ const NewPostForm = () => {
   const currentPage = useSelector((state) => state.posts.currentPage);
   const dispatch = useDispatch();
   const [text, setText] = useState("");
-  
+  const [isLoading, setIsLoading] = useState(false);
+
   const submitHandler = (event) => {
     event.preventDefault();
+    setIsLoading(true)
     let user = localStorage.getItem("user");
     let postObj = { title: text, username: user };
     addPosts(postObj);
     dispatch(updateAsync(currentPage));
+    setIsLoading(false)
+
   };
   return (
     <div>
@@ -30,9 +34,13 @@ const NewPostForm = () => {
           value={text}
           onChange={(event) => setText(event.target.value)}
         />
-        <button className={styles.Button} type="submit">
-          post
-        </button>
+        {!isLoading ? (
+          <button className={styles.Button} type="submit">
+            Add
+          </button>
+        ) : (
+          <span>Loading...</span>
+        )}
       </form>
     </div>
   );

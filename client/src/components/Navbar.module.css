@@ -19,16 +19,16 @@
   justify-content: center;
   font-size: 25px;
 }
-.LogOutButton{
-  background-color: aliceblue; 
-  color: #F2668B; 
-  border: 2px solid #F2668B;
+.LogOutButton {
+  background-color: aliceblue;
+  color: #f2668b;
+  border: 2px solid #f2668b;
   cursor: pointer;
   padding: 10px 10px 10px 10px;
   border-radius: 10%;
   font-size: 20px;
 }
 .LogOutButton:hover {
-  background-color: #F2668B;
+  background-color: #f2668b;
   color: aliceblue;
 }

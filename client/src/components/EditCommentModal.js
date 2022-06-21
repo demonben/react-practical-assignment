@@ -36,6 +36,7 @@ const EditCommentModal = ({ editModalIsOpen, closeEditModal, comment }) => {
           size={30}
           onClick={closeEditModal}
         />{" "}
+        <h1 className="title-text">Edit comment </h1>
         <div>
           {" "}
           <form onSubmit={submitHandler} className={styles.Form}>

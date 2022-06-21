@@ -41,19 +41,13 @@ const PostItem = ({ post }) => {
     <div className="post-item">
     <Card>
         <div>
-        <CardMedia
-        component="img"
-        height="140"
-        image={post.imageSrc}
-        alt="no post img"
-      />
-          {/* <img
+          <img
             className="image"
             src={post.imageSrc}
             alt="no post img"
             width="200"
             height="200"
-          ></img> */}
+          ></img>
           <div className="post-card">
             <span className="line-title">Author:</span>
             <span>{post.username}</span>
